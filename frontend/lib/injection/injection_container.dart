@@ -27,8 +27,11 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<FirebaseStorage>(
     () => FirebaseStorage.instance,
   );
-  // google_sign_in 7.x usa singleton — requiere initialize() antes de usar
-  await GoogleSignIn.instance.initialize();
+  // google_sign_in 7.x: serverClientId = Web OAuth client ID de Firebase
+  // (type 3 en google-services.json) — necesario para obtener idToken en Android
+  await GoogleSignIn.instance.initialize(
+    serverClientId: '560559933172-ue4ejk15ld7v5bvv76452ccp37hqtvbv.apps.googleusercontent.com',
+  );
   sl.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn.instance);
 
   // ── Features (cada uno se registra solo) ──────────────────────

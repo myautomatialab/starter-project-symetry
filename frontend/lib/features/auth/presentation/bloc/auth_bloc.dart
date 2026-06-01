@@ -66,6 +66,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (msg.contains('cancelled') || msg.contains('cancel')) {
       return '';
     }
+    // Error 10 = SHA-1 no registrado en Firebase Console
+    if (msg.contains('developer_error') || msg.contains('10:') || msg.contains('error_code=10')) {
+      return 'Configuración de Google incorrecta. Contacta al soporte.';
+    }
+    // ignore: avoid_print
+    assert(() { print('[AuthBloc] signIn error: $error'); return true; }());
     return 'No se pudo iniciar sesión. Inténtalo de nuevo';
   }
 

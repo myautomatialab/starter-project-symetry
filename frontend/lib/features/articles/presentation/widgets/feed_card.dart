@@ -144,6 +144,7 @@ class _FeedCardState extends State<FeedCard> with TickerProviderStateMixin {
             children: [
               _buildBackground(),
               if (_isExpanded) _buildExpandedOverlay(),
+              _buildSwipeColorOverlay(),
               _buildCategoryChip(),
               _buildBookmarkButton(),
               if (!_isExpanded) _buildTitleOverlay(),
@@ -185,6 +186,15 @@ class _FeedCardState extends State<FeedCard> with TickerProviderStateMixin {
       },
       child: imageWidget,
     );
+  }
+
+  Widget _buildSwipeColorOverlay() {
+    if (_dragOffset == 0) return const SizedBox.shrink();
+    final progress = (_dragOffset.abs() / _swipeThreshold).clamp(0.0, 1.0);
+    final color = _dragOffset > 0
+        ? Colors.green.withValues(alpha: progress * 0.35)
+        : Colors.red.withValues(alpha: progress * 0.35);
+    return ColoredBox(color: color);
   }
 
   Widget _buildPlaceholderImage() {
