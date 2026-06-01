@@ -16,7 +16,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // Valores extraídos de android/app/google-services.json
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB4hO8fzQbxb4Zy7bBgNsBev-KWuqUGf2o',
     appId: '1:560559933172:android:d074879538471a81f480a1',
@@ -25,7 +24,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'tortutip-mvp.firebasestorage.app',
   );
 
-  // Valores extraídos de ios/Runner/GoogleService-Info.plist
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCRrT0JWMSL8WVzNN8IZXTDfA1TXNaZXBA',
     appId: '1:560559933172:ios:911b0a161eff1c61f480a1',
